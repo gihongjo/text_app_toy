@@ -34,13 +34,23 @@ class join_state extends State<join> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const Text_Field(labelText: '이름을 입력하세요.', hintText: '이름'),
                 const Text_Field(
-                    labelText: '휴대폰 번호를 입력하세요.', hintText: '휴대폰 번호'),
-                const Text_Field(labelText: '아이디를 입력하세요.', hintText: '아이디'),
-                const Text_Field(labelText: '비밀번호를 입력하세요.', hintText: '비밀번호'),
+                  labelText: '이름을 입력하세요.',
+                  hintText: '이름',
+                  choice: 0,
+                ),
                 const Text_Field(
-                    labelText: '비밀번호를 재입력하세요.', hintText: '비밀번호 확인'),
+                    labelText: '이메일을 입력하세요.', hintText: '이메일', choice: 1),
+                const Text_Field(
+                  labelText: '비밀번호를 입력하세요.',
+                  hintText: '비밀번호',
+                  choice: 2,
+                ),
+                const Text_Field(
+                  labelText: '비밀번호를 재입력하세요.',
+                  hintText: '비밀번호 확인',
+                  choice: 2,
+                ),
                 const SizedBox(
                   height: 100,
                 ),

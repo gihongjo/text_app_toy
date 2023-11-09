@@ -3,8 +3,16 @@ import 'package:flutter/material.dart';
 class Text_Field extends StatelessWidget {
   final String labelText;
   final String hintText;
-  const Text_Field(
-      {super.key, required this.labelText, required this.hintText});
+  //<value> can be name, email, password
+
+  ///0: name, 1 => email, 2 => password, 3:password checking
+  final int choice;
+  const Text_Field({
+    super.key,
+    required this.labelText,
+    required this.hintText,
+    required this.choice,
+  });
 
   @override
   Widget build(BuildContext context) {

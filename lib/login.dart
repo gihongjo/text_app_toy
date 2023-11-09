@@ -16,6 +16,18 @@ class login extends StatefulWidget {
 }
 
 class login_state extends State<login> {
+  String userEmail = '';
+  String userPassWord = '';
+
+  final _formkey = GlobalKey<FormState>();
+
+  void _tryValidation() {
+    final isValid = _formkey.currentState!.validate();
+    if (isValid) {
+      _formkey.currentState!.save();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -42,8 +54,70 @@ class login_state extends State<login> {
               ),
             ),
             const SizedBox(height: 40),
-            const Text_Field(labelText: '아이디를 입력하세요.', hintText: '아이디'),
-            const Text_Field(labelText: '비밀번호를 입력하세요.', hintText: '비밀번호'),
+            Container(
+              padding: const EdgeInsets.only(
+                left: 40,
+                right: 40,
+              ),
+              child: Column(
+                children: [
+                  TextFormField(
+                    validator: (value) {
+                      if (value!.isEmpty || value.contains('@')) {
+                        return '알맞은 이메일 형식을 입력하세요';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      userEmail = value!;
+                    },
+                    onChanged: (value) {
+                      userEmail = value;
+                    },
+                    style: const TextStyle(fontSize: 20, color: Colors.white),
+                    textAlign: TextAlign.left,
+                    decoration: const InputDecoration(
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                      fillColor: Colors.black,
+                      filled: true,
+                      labelText: '이메일을 입력하세요.',
+                      hintText: 'E-mail',
+                      hintStyle: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                  TextFormField(
+                    validator: (value) {
+                      if (value!.isEmpty || value.length < 4) {
+                        return '비밀번호는 4글자 이상입니다.';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      userPassWord = value!;
+                    },
+                    onChanged: (value) {
+                      userPassWord = value;
+                    },
+                    style: const TextStyle(fontSize: 20, color: Colors.white),
+                    textAlign: TextAlign.left,
+                    decoration: const InputDecoration(
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Color.fromARGB(255, 69, 69, 69)),
+                      ),
+                      fillColor: Colors.black,
+                      filled: true,
+                      labelText: '비밀번호를 입력하세요.',
+                      hintText: 'Password',
+                      hintStyle:
+                          TextStyle(color: Color.fromARGB(255, 69, 69, 69)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(
               height: 50,
             ),
